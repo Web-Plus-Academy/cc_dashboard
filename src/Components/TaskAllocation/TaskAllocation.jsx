@@ -10,6 +10,7 @@ const TaskAllocation = () => {
   const [sem, setSem] = useState("");
   const [allocDate, setAllocDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [loading, setLoading] = useState(false); // Loader state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +24,7 @@ const TaskAllocation = () => {
       endDate,
     };
 
+    setLoading(true); // Start loading
     try {
       const response = await axios.post("/api/admin/add-task", data);
       console.log("Response:", response.data);
@@ -52,77 +54,87 @@ const TaskAllocation = () => {
         icon: "error",
         confirmButtonText: "OK",
       });
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
   return (
     <div className="alloc-container">
       <h2 className="alloc-heading">Task Submission alloc</h2>
-      <form onSubmit={handleSubmit} className="alloc">
-        <div className="alloc-group">
-          <label className="alloc-label">Batch Number:</label>
-          <input
-            type="number"
-            className="alloc-input"
-            value={batchnumber}
-            onChange={(e) => setBatchnumber(e.target.value)}
-            required
-          />
+      {loading ? (
+        <div className="loader-container">
+          {/* Loader component */}
+          <div className="loader"></div>
+          <p>Loading...</p>
         </div>
-        <div className="alloc-group">
-          <label className="alloc-label">Link:</label>
-          <input
-            type="url"
-            className="alloc-input"
-            value={link}
-            onChange={(e) => setLink(e.target.value)}
-            required
-          />
-        </div>
-        <div className="alloc-group">
-          <label className="alloc-label">Task:</label>
-          <input
-            type="number"
-            className="alloc-input"
-            value={task}
-            onChange={(e) => setTask(e.target.value)}
-            required
-          />
-        </div>
-        <div className="alloc-group">
-          <label className="alloc-label">Semester:</label>
-          <input
-            type="number"
-            className="alloc-input"
-            value={sem}
-            onChange={(e) => setSem(e.target.value)}
-            required
-          />
-        </div>
-        <div className="alloc-group">
-          <label className="alloc-label">Allocation Date:</label>
-          <input
-            type="datetime-local"
-            className="alloc-input"
-            value={allocDate}
-            onChange={(e) => setAllocDate(e.target.value)}
-            required
-          />
-        </div>
-        <div className="alloc-group">
-          <label className="alloc-label">End Date:</label>
-          <input
-            type="datetime-local"
-            className="alloc-input"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="alloc-button">
-          Allocate Task
-        </button>
-      </form>
+      ) : (
+        <form onSubmit={handleSubmit} className="alloc">
+          <div className="alloc-group">
+            <label className="alloc-label">Batch Number:</label>
+            <input
+              type="number"
+              className="alloc-input"
+              value={batchnumber}
+              onChange={(e) => setBatchnumber(e.target.value)}
+              required
+            />
+          </div>
+          <div className="alloc-group">
+            <label className="alloc-label">Link:</label>
+            <input
+              type="url"
+              className="alloc-input"
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+              required
+            />
+          </div>
+          <div className="alloc-group">
+            <label className="alloc-label">Task:</label>
+            <input
+              type="number"
+              className="alloc-input"
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+              required
+            />
+          </div>
+          <div className="alloc-group">
+            <label className="alloc-label">Semester:</label>
+            <input
+              type="number"
+              className="alloc-input"
+              value={sem}
+              onChange={(e) => setSem(e.target.value)}
+              required
+            />
+          </div>
+          <div className="alloc-group">
+            <label className="alloc-label">Allocation Date:</label>
+            <input
+              type="datetime-local"
+              className="alloc-input"
+              value={allocDate}
+              onChange={(e) => setAllocDate(e.target.value)}
+              required
+            />
+          </div>
+          <div className="alloc-group">
+            <label className="alloc-label">End Date:</label>
+            <input
+              type="datetime-local"
+              className="alloc-input"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="alloc-button">
+            Allocate Task
+          </button>
+        </form>
+      )}
     </div>
   );
 };
