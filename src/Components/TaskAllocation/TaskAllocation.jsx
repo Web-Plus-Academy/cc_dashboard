@@ -24,44 +24,56 @@ const TaskAllocation = () => {
       endDate,
     };
 
-    setLoading(true); // Start loading
-    try {
-      const response = await axios.post("/api/admin/add-task", data);
-      console.log("Response:", response.data);
+    // Show confirmation dialog before proceeding
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to allocate this task?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, allocate it!",
+      cancelButtonText: "Cancel",
+    });
 
-      // Success Alert
-      Swal.fire({
-        title: "Success!",
-        text: "Task Allocated successfully!",
-        icon: "success",
-        confirmButtonText: "OK",
-      });
+    if (result.isConfirmed) {
+      setLoading(true); // Start loading
+      try {
+        const response = await axios.post("/api/admin/add-task", data);
+        console.log("Response:", response.data);
 
-      // Reset alloc Fields
-      setBatchnumber("");
-      setLink("");
-      setTask("");
-      setSem("");
-      setAllocDate("");
-      setEndDate("");
-    } catch (error) {
-      console.error("Error submitting task:", error);
+        // Success Alert
+        Swal.fire({
+          title: "Success!",
+          text: "Task allocated successfully!",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
 
-      // Error Alert
-      Swal.fire({
-        title: "Error!",
-        text: "Failed to submit the task. Please try again.",
-        icon: "error",
-        confirmButtonText: "OK",
-      });
-    } finally {
-      setLoading(false); // End loading
+        // Reset alloc Fields
+        setBatchnumber("");
+        setLink("");
+        setTask("");
+        setSem("");
+        setAllocDate("");
+        setEndDate("");
+      } catch (error) {
+        console.error("Error submitting task:", error);
+
+        // Error Alert
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to submit the task. Please try again.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      } finally {
+        setLoading(false); // End loading
+      }
     }
   };
 
   return (
     <div className="alloc-container">
-      <h2 className="alloc-heading">Task Submission alloc</h2>
+      <h2 className="alloc-heading">Task Submission Allocation</h2>
       {loading ? (
         <div className="loader-container">
           {/* Loader component */}
@@ -91,7 +103,7 @@ const TaskAllocation = () => {
             />
           </div>
           <div className="alloc-group">
-            <label className="alloc-label">Task:</label>
+            <label className="alloc-label">Week:</label>
             <input
               type="number"
               className="alloc-input"
