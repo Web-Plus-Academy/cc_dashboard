@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Outfit";
+}
+
+hr{
+    border: 1px solid blue;
+}
+
+/* .app-container {
+    height: 90%; 
+    display: flex;
+} */
+.navbar{
+    height: 10%;
+}
+.application{
+    height: 100vh;
+}
+  
+/* .main-content {
+    flex: 1;
+    padding: 1rem;
+} */
+  
+
+
+/* Layout container */
+.app-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+
+
+/* Main content area */
+.main-content {
+    margin-left: 250px; /* Adjust this to match sidebar width */
+    margin-top: 60px;  /* Adjust this to match navbar height */
+    padding: 2rem;
+    width: 100%;
+    height: calc(100vh - 60px); /* Full height of the viewport minus navbar height */
+    overflow-y: auto; /* Make main content scrollable */
+  }
+  

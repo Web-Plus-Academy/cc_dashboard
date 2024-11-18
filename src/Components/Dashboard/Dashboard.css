@@ -1,0 +1,103 @@
+.dashboard_heading{
+  text-align: center;
+  font-family:serif;
+  font-size: 50px;
+  margin-top: 1rem;
+}
+
+.change-password-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.popup-content h2 {
+  margin-top: 0;
+}
+
+.popup-content label {
+  display: block;
+  margin: 10px 0;
+  font-size: 14px;
+  text-align: left;
+}
+
+.popup-content input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-button, .cancel-button {
+  padding: 8px 16px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #f44336;
+  color: white;
+  margin-left: 10px;
+}
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 30px; 
+  font-size: 20px;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px; /* Position the eye icon on the right side of the input */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.eye-icon svg {
+  font-size: 18px; /* Adjust size of the icon */
+  color: #333; /* Adjust icon color */
+}

@@ -1,0 +1,64 @@
+  /* Fixed navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10; 
+  }
+  
+  .navbar h1 {
+    margin: 0;
+  }
+  
+  .logout-button {
+    padding: 0.5rem 1rem;
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .logout-button:hover {
+    background-color: #ff1a1a;
+  }
+  
+  /* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .navbar h1 {
+      font-size: 1.25rem; /* Adjust font size for smaller screens */
+  }
+
+  .logout-button {
+      width: 30%; /* Make button full width on smaller screens */
+      text-align: center; /* Center text inside button */
+      /* margin-top: 1rem; Add space above button */
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+      padding: 0.5rem; /* Reduce padding for very small screens */
+  }
+
+  .navbar h1 {
+      font-size: 1rem; /* Further reduce font size */
+  }
+
+  .logout-button {
+      padding: 0.5rem; /* Reduce padding */
+      font-size: 0.75rem; /* Further reduce font size for the button */
+  }
+}

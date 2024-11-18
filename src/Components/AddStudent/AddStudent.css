@@ -1,0 +1,123 @@
+
+.add_user_heading{
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .add-user-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-user-form h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .add-user-form div {
+    margin-bottom: 15px;
+  }
+  
+  .add-user-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 500;
+  }
+  
+  .add-user-form input[type="text"],
+  .add-user-form input[type="password"],
+  .add-user-form input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  .add-user-form input:focus {
+    border-color: #66afe9;
+    outline: none;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+  }
+  
+  .add-user-form button {
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .add-user-form button:hover {
+    background-color: #218838;
+  }
+  
+  .add-user-form .message {
+    text-align: center;
+    color: #d9534f;
+    font-size: 16px;
+  }
+  
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .add-user-form {
+    padding: 15px; /* Reduce padding for smaller screens */
+    width: 90%; /* Adjust width for smaller screens */
+  }
+
+  .add-user-form h3 {
+    font-size: 1.25rem; /* Adjust font size for smaller screens */
+  }
+
+  .add-user-form button {
+    font-size: 1rem; /* Ensure button font size scales properly */
+  }
+
+  .add-user-form .message {
+    font-size: 0.875rem; /* Adjust font size for messages */
+  }
+}
+
+@media (max-width: 480px) {
+  .add-user-form {
+    padding: 10px; /* Further reduce padding */
+    width: 100%; /* Ensure form takes full width on very small screens */
+  }
+
+  .add-user-form h3 {
+    font-size: 1rem; /* Further adjust heading font size */
+  }
+
+  .add-user-form input[type="text"],
+  .add-user-form input[type="password"],
+  .add-user-form input[type="number"] {
+    font-size: 0.875rem; /* Adjust input font size */
+  }
+
+  .add-user-form button {
+    font-size: 0.875rem; /* Adjust button font size */
+    padding: 12px 16px; /* Adjust padding */
+  }
+
+  .add-user-form .message {
+    font-size: 0.75rem; /* Adjust font size for messages */
+  }
+}

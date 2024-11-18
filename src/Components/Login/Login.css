@@ -1,0 +1,141 @@
+.right_login h1{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.right_login b{
+  color: orange;
+}
+
+.login-container{
+  display: flex;
+  align-items: center;
+  /* border: 2px solid red; */
+  padding: 20px;
+  width: 100%;
+  border: 2px solid red;
+  height: 100vh;
+  justify-content: space-around;
+}
+
+.login-container img{
+  margin-top: 5rem;
+  /* margin: 5rem 6rem 0 6rem; */
+  border-radius: 30px;
+  /* margin: 6rem; */
+  height: 50vh;
+  width: 45%;
+  box-shadow: 3px 3px 10px grey;
+}
+
+.login-container form{
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  border: 2px solid #007bff;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin-right: 50px;
+  height: 60vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group{
+  margin-bottom: 20px;
+}
+
+.form-label {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #333;
+}
+
+
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.submit-button {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+} 
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .login-container img {
+    width: 40%; /* Adjust width for tablets and smaller screens */
+  }
+
+  .login-container form {
+    margin-right: 20px; /* Reduce margin on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: center; /* Center items horizontally */
+    padding: 0;
+    margin: auto;
+  }
+
+  .login-container img {
+    margin: 0;
+    width: 60%;
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .login-container form {
+    max-width: 90%; /* Adjust width for smaller screens */
+    margin-right: 0; /* Remove margin-right */
+  }
+
+  .right_login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container img {
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .login-container form {
+    padding: 1rem; /* Reduce padding on very small screens */
+  }
+
+  .form-input {
+    font-size: 0.9rem; /* Adjust font size for smaller screens */
+  }
+
+  .submit-button {
+    font-size: 0.9rem; /* Adjust button font size for smaller screens */
+  }
+}
