@@ -8,6 +8,7 @@ const TaskCreditUpdate = () => {
     const [tasks, setTasks] = useState([]); // List of tasks fetched from the backend
     const [selectedTask, setSelectedTask] = useState(null); // For assigning credit to a specific task
     const [credit, setCredit] = useState(""); // Credit value for a task
+    const [creditFilter, setCreditFilter] = useState(""); // For filtering
     const [selectedSemester, setSelectedSemester] = useState(""); // Semester filter
     const [submissionFilter, setSubmissionFilter] = useState(""); // Submission status filter
     const [searchQuery, setSearchQuery] = useState(""); // Search input
@@ -52,7 +53,7 @@ const TaskCreditUpdate = () => {
         }
 
         try {
-            const response = await axios.put("/api/admin/assignCredit", {
+            await axios.put("/api/admin/assignCredit", {
                 batchnumber: batchNumber,
                 sem: selectedTask.sem,
                 taskId: selectedTask.taskId,
@@ -68,7 +69,7 @@ const TaskCreditUpdate = () => {
             // Refresh tasks
             fetchTasks(batchNumber);
             setSelectedTask(null);
-            setCredit("");
+            setCredit(""); // Clear input field
         } catch (error) {
             console.error("Error assigning credit:", error);
             Swal.fire({
@@ -78,6 +79,7 @@ const TaskCreditUpdate = () => {
             });
         }
     };
+
 
     // Handle data export as CSV
     const handleExportData = () => {
@@ -104,12 +106,13 @@ const TaskCreditUpdate = () => {
     const filteredTasks = tasks
         .filter(
             (task) =>
-                (selectedSemester ? task.sem === parseInt(selectedSemester) : true) &&
+                (selectedSemester ? task.sem === selectedSemester : true) &&
                 (submissionFilter
                     ? submissionFilter === "submitted"
                         ? task.isSubmitted
                         : !task.isSubmitted
                     : true) &&
+                (creditFilter === "-1" ? task.credit === -1 : true) && // Use creditFilter here
                 (searchQuery
                     ? task.studentName.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     task.taskId.includes(searchQuery)
@@ -121,7 +124,8 @@ const TaskCreditUpdate = () => {
             if (sortBy === "credit") return b.credit - a.credit;
             return 0;
         })
-        .slice((page - 1) * pageSize, page * pageSize); // Pagination
+        .slice((page - 1) * pageSize, page * pageSize);
+
 
     return (
         <div className="task-manager-container">
@@ -152,13 +156,14 @@ const TaskCreditUpdate = () => {
                         className="form-select"
                     >
                         <option value="">-- Select Semester --</option>
-                        {[1, 2, 3].map((sem) => (
+                        {['sem1', 'sem2', 'sem3'].map((sem) => (
                             <option key={sem} value={sem}>
-                                Semester {sem}
+                                {sem.toUpperCase()}
                             </option>
                         ))}
                     </select>
                 </div>
+
 
                 <div className="form-group">
                     <label className="form-label">Submission Status:</label>
@@ -197,7 +202,21 @@ const TaskCreditUpdate = () => {
                         <option value="credit">Credit</option>
                     </select>
                 </div>
+
+                <div className="form-group">
+                    <label className="form-label">Filter by Credit:</label>
+                    <select
+                        value={creditFilter}
+                        onChange={(e) => setCreditFilter(e.target.value)}
+                        className="form-select"
+                    >
+                        <option value="">-- All Credits --</option>
+                        <option value="-1">Credit: -1</option>
+                    </select>
+                </div>;
+
             </div>
+
 
             {/* Display Tasks */}
             {isLoading ? (
@@ -246,7 +265,7 @@ const TaskCreditUpdate = () => {
                                 </td>
                                 <td>
                                     {task.endDate ? (
-                                        
+
                                         (() => {
                                             const date = new Date(task.endDate);
                                             const day = String(date.getDate()).padStart(2, '0'); // Day with leading zero
@@ -288,7 +307,7 @@ const TaskCreditUpdate = () => {
 
                                 {/* <td onClick={()=>{console.log(task.isSubmitted)}}>{task.isSubmitted}</td> */}
                                 <td >{task.isSubmitted ? "Submitted" : "Not Submitted"}</td>
-                                <td onClick={()=>{console.log(task)}} >
+                                <td onClick={() => { console.log(task) }} >
                                     {task.submittedTime ? (
                                         // Create a new Date object and format it
                                         (() => {
