@@ -145,6 +145,7 @@ const TaskCreditUpdate = () => {
                         <option value="2">Batch 2</option>
                         <option value="3">Batch 3</option>
                         <option value="4">Batch 4</option>
+                        <option value="5">Batch 5</option>
                     </select>
                 </div>
 
