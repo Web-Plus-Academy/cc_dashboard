@@ -106,7 +106,7 @@ const TaskCreditUpdate = () => {
     const filteredTasks = tasks
         .filter(
             (task) =>
-                (selectedSemester ? task.sem === selectedSemester : true) &&
+                (selectedSemester ? task.sem == selectedSemester : true) &&
                 (submissionFilter
                     ? submissionFilter === "submitted"
                         ? task.isSubmitted
@@ -157,9 +157,10 @@ const TaskCreditUpdate = () => {
                         className="form-select"
                     >
                         <option value="">-- Select Semester --</option>
-                        {['sem1', 'sem2', 'sem3'].map((sem) => (
+                        {[1,2,3,'sem1', 'sem2', 'sem3'].map((sem) => (
                             <option key={sem} value={sem}>
-                                {sem.toUpperCase()}
+                                {console.log(sem)}
+                                {sem}
                             </option>
                         ))}
                     </select>
@@ -242,6 +243,7 @@ const TaskCreditUpdate = () => {
                     <tbody>
                         {filteredTasks.map((task) => (
                             <tr key={task.taskId}>
+                                {console.log(task)}
                                 <td>{task.studentName}</td>
                                 <td>{task.sem}</td>
                                 <td>{task.task}</td>
